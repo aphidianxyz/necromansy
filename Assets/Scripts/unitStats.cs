@@ -10,5 +10,8 @@ public class unitStats : MonoBehaviour
     public float cost = 2f;
     public float bloodLevel = 0f;
 
-    
+    void Start()
+    {
+        gameObject.GetComponentInChildren<SphereCollider>().radius = attackRange;
+    }
 }
