@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6831704924468660052}
   - component: {fileID: 3478500594484369291}
   - component: {fileID: 6193032327991887520}
+  - component: {fileID: 5733478154604210928}
   m_Layer: 0
   m_Name: Human
   m_TagString: Untagged
@@ -129,6 +130,18 @@ MonoBehaviour:
   moveSpeed: 2
   cost: 2
   bloodLevel: 0
+--- !u!114 &5733478154604210928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606186766821203669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b187f5f404332f13fbbd9a5eec858469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9043340484440326212
 GameObject:
   m_ObjectHideFlags: 0
