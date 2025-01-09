@@ -12,6 +12,8 @@ public class unitStats : MonoBehaviour
 
     void Start()
     {
-        gameObject.GetComponentInChildren<SphereCollider>().radius = attackRange;
+				GameObject rangeIndicator = GameObject.Find("AttackRange");
+        SphereCollider rangeCollider = rangeIndicator.GetComponent<SphereCollider>();
+        rangeCollider.radius = attackRange;
     }
 }
