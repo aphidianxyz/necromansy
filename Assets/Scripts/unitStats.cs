@@ -12,7 +12,7 @@ public class unitStats : MonoBehaviour
 
     void Start()
     {
-				GameObject rangeIndicator = GameObject.Find("AttackRange");
+        Transform rangeIndicator = transform.Find("AttackRange");
         SphereCollider rangeCollider = rangeIndicator.GetComponent<SphereCollider>();
         rangeCollider.radius = attackRange;
     }
