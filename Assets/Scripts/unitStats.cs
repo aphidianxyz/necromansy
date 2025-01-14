@@ -7,7 +7,9 @@ public class unitStats : MonoBehaviour
     public float damage = 5f;
     public float attackRange = 4f;
     public float timeBetweenAttacks = 2f;
-    bool isRanged = false;
+
+    public GameObject projectile = null;
+    public bool isRanged = false;
 
     public float moveSpeed = 2f;
 

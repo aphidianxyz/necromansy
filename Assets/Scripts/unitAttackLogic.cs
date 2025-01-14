@@ -11,9 +11,11 @@ public class unitAttackLogic : MonoBehaviour
 	private float attackTimer = 0f;
 
 	private string opposingTag = "Enemy";
-	private List<GameObject> targets = new List<GameObject>{};
+	private List<GameObject> targets = new List<GameObject> { };
 	private GameObject currentTarget = null;
 	private bool hasTarget = false;
+
+	public GameObject projectile = null;
 
 
 
@@ -25,25 +27,43 @@ public class unitAttackLogic : MonoBehaviour
 
 			opposingTag = "Player";
 		}
+
+		if (unitStats.isRanged){
+			projectile = unitStats.projectile;
+		}
 	}
 
 	private void Update()
-	{
-		if(!hasTarget && targets.Count > 0){
-				currentTarget = targets[0];
-				hasTarget = true;
-			}
+	{	
+		//Aquire target if none and targets in list
+		if (!hasTarget && targets.Count > 0)
+		{
+			currentTarget = targets[0];
+			hasTarget = true;
+		}
+		//If there is a target start atacking
 		else if (hasTarget)
 		{
 			attackTimer += Time.deltaTime;
 			if (attackTimer >= unitStats.timeBetweenAttacks)
 			{
-				currentTarget.GetComponent<unitStats>().TakeDamage(unitStats.damage);
+				if (!unitStats.isRanged)
+				{
+					currentTarget.GetComponent<unitStats>().TakeDamage(unitStats.damage);
+					Debug.Log(gameObject.name + " Attacks " + currentTarget.name);
+				}
+				else
+				{
+					GameObject projectileSpawned = Instantiate(projectile, transform.position,transform.rotation);
+					projectileSpawned.GetComponent<GenProjectile>().SetTarget(currentTarget.transform);
+				}
+
 				attackTimer = 0f;
-				Debug.Log(gameObject.name + " Attacks " + currentTarget.name);
+
 			}
 		}
 	}
+	//Gathers targets that enter attack range
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 
@@ -53,9 +73,12 @@ public class unitAttackLogic : MonoBehaviour
 		}
 	}
 
+	//If target leaves radius remove it from list and get another target if it was
+	//current target
 	private void OnTriggerExit2D(Collider2D other)
 	{
-		if(other.gameObject == currentTarget){
+		if (other.gameObject == currentTarget)
+		{
 			currentTarget = null;
 			hasTarget = false;
 		}
