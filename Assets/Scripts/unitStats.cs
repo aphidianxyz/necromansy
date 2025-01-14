@@ -1,3 +1,5 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class unitStats : MonoBehaviour
@@ -16,17 +18,21 @@ public class unitStats : MonoBehaviour
     public float cost = 2f;
     public float bloodLevel = 0f;
 
+    SpriteRenderer spriteRenderer;
+
     void Start()
     {
         gameObject.GetComponents<CircleCollider2D>()[1].radius = attackRange;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        if (health <= 0)
+        if (health <= 0 || !isAlive)
         {
             Die();
         }
+        
     }
 
     public void TakeDamage(float damageDelt)

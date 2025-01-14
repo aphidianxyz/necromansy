@@ -28,7 +28,7 @@ public class GenProjectile : MonoBehaviour
             }
         }
         //Handles target dying mid flight
-        else if (target == null && hadTarget)
+        else if (hadTarget)
         {
             Destroy(gameObject);
         }
